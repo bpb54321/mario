@@ -1,23 +1,27 @@
+package mario.pkg;
+
 import java.util.*;
+import java.io.*;
 
 /**
- * A class that runs a script which prints a right-aligned pyramid for Mario to jump over on the terminal.
+ * A class that runs a script which prints a right-aligned pyramid for Mario to jump over on the terminal or to a file.
  * 
  * @author Brian
- * @version 07/08/15
+ * @version 2.0
  */
 public class Mario
 {
-    public static void main(String[] args)
+    public static void main(String[] args) throws IOException
     {
        //Tests
        //testVerifyInput();
-        //Create Scanner to get input from the user
        System.out.println("\nWelcome to the Mario Program!  At any time, press 'q' to quit the program.\n");
        //System.out.println("\nWhat size should the pyramid be? Please enter a non-negative integer\n" + 
        //         "no greater than 23.\n");
+       // Initialize input and output streams
        Scanner scanner=new Scanner(System.in);
        String currentInputString;
+        PrintWriter outputStream=null;
        
        programLoop:
            while (true) {
@@ -45,12 +49,51 @@ public class Mario
                currentInputString=scanner.nextLine();
                //System.out.println("The number you have chosen is " + currentInputString + "\n");
                //Switch block
+               int numOfLeftSpaces=height-1;
+               int numOfHashes=2;
+               String outputString;
                switch (currentInputString) {
                    case "1":
-                       System.out.println("The number you have chosen is 1. \n");
+                       System.out.println("You have chosen to print to the console. \n");
+                       /////Block for printing the pyramid
+
+                       for (int i=0; i<height; i++ ) {
+                           outputString="";
+                           for (int j=0; j<numOfLeftSpaces; j++) {
+                               outputString+=" ";
+                           }
+                           for (int k=0; k<numOfHashes; k++) {
+                               outputString+="#";
+                           }
+                           System.out.println(outputString);
+                           numOfLeftSpaces--;
+                           numOfHashes++;
+                       }
                        break;
                    case "2":
-                       System.out.println("The number you have chosen is 2. \n");
+                       System.out.println("You have chosen to print to a file. \n");
+                       try {
+                           outputStream = new PrintWriter(new FileWriter("testoutputfile.txt"));
+                           /////Block for printing the pyramid
+                           for (int i=0; i<height; i++ ) {
+                                outputString="";
+                               for (int j=0; j<numOfLeftSpaces; j++) {
+                                   outputString+=" ";
+                               }
+                               for (int k=0; k<numOfHashes; k++) {
+                                   outputString+="#";
+                               }
+                               outputStream.println(outputString);
+                               numOfLeftSpaces--;
+                               numOfHashes++;
+
+                           }
+                       } catch (IOException e) {
+                           e.printStackTrace();
+                       } finally {
+                           if (outputStream != null) outputStream.close();
+                       }
+
                        break;
                    default:
                        System.out.println("You have entered an invalid number. \n");
@@ -59,24 +102,7 @@ public class Mario
 
 
 
-               /////Block for printing the pyramid
-               int numOfLeftSpaces=height-1;
-               int numOfHashes=2;
-               String outputString;
-               for (int i=0; i<height; i++ ) {
-                   outputString="";
-                   
-                   for (int j=0; j<numOfLeftSpaces; j++) {
-                       outputString+=" ";
-                   }
-                   for (int k=0; k<numOfHashes; k++) {
-                       outputString+="#";
-                   }
-                   System.out.println(outputString);
-                   numOfLeftSpaces--;
-                   numOfHashes++;
-                   
-               }
+
            //////////////////////////////////
         }
        System.out.println("\nYou have quit the program.  Goodbye!\n");
@@ -89,13 +115,20 @@ public class Mario
     }
     
     static boolean verifyInput(String inputString) {
-        
-        int lowerLimit=1;
-        int upperLimit=23;
-        int inputInt=Integer.valueOf(inputString);
-        if (inputInt>=lowerLimit && inputInt<=upperLimit) {
-            return true;
-        } else {
+
+        int lowerLimit = 1;
+        int upperLimit = 23;
+        try {
+
+            int inputInt = Integer.valueOf(inputString);
+            if (inputInt >= lowerLimit && inputInt <= upperLimit) {
+                return true;
+            } else {
+                return false;
+            }
+        } catch (NumberFormatException e) {
+            //System.out.println("Input to verifyInput() must be of type String");
+            //throw e;
             return false;
         }
     }
