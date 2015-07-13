@@ -7,9 +7,9 @@ import java.io.*;
  */
 public class FileWriteExample {
 
-    public static void main(String[] args)  {
+    public static void main(String[] args) throws IOException  {
 
-        BufferedWriter outputStream;
+        BufferedWriter outputStream=null;
 
         try {
             try {
@@ -22,6 +22,8 @@ public class FileWriteExample {
                 e.printStackTrace();
             }
         } finally {
+
+            outputStream.close();
 
 
         }
