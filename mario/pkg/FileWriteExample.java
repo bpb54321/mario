@@ -13,6 +13,7 @@ public class FileWriteExample {
 
         try {
             try {
+
                 outputStream = new BufferedWriter(new FileWriter("testoutputfile.txt"));
                 String testString="Testing file writing";
                 outputStream.write(testString);
@@ -23,7 +24,7 @@ public class FileWriteExample {
             }
         } finally {
 
-            outputStream.close();
+            if (outputStream!=null) outputStream.close();
 
 
         }
