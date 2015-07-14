@@ -16,10 +16,10 @@ public class pyramidWriterFile implements pyramidWriter {
         String outputString;
         int numOfLeftSpaces=height-1;
         int numOfHashes= pyramidWriter.INIT_NUM_OF_HASHES;
-        PrintWriter outputStream=null;
+        //PrintWriter outputStream=null;
         String fileString = "mario.txt";
-        try {
-           outputStream = new PrintWriter(new FileWriter(fileString));
+        try (PrintWriter outputStream = new PrintWriter(new FileWriter(fileString))) {
+           //outputStream = new PrintWriter(new FileWriter(fileString));
 
            for (int i=0; i<height; i++ ) {
                 outputString="";
@@ -38,8 +38,9 @@ public class pyramidWriterFile implements pyramidWriter {
             System.out.println("\nYou have printed to the file '" + fileString + "' \n");
        } catch (IOException e) {
            e.printStackTrace();
-       } finally {
-           if (outputStream != null) outputStream.close();
        }
+        /*finally {
+           if (outputStream != null) outputStream.close();
+       }*/
     }
 }
