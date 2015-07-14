@@ -17,7 +17,7 @@ public class pyramidWriterFile implements pyramidWriter {
         int numOfLeftSpaces=height-1;
         int numOfHashes= pyramidWriter.INIT_NUM_OF_HASHES;
         PrintWriter outputStream=null;
-        String fileString = "testoutputfile.txt";
+        String fileString = "mario.txt";
         try {
            outputStream = new PrintWriter(new FileWriter(fileString));
 
