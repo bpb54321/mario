@@ -19,6 +19,7 @@ public class Mario
        // Initialize input streams
        Scanner scanner=new Scanner(System.in);
        String currentInputString;
+        String fileString="mario.txt";
        
        programLoop:
            while (true) {
@@ -53,14 +54,14 @@ public class Mario
 
                            case "1":
 
-                               pyramidWriterConsole pConsole = new pyramidWriterConsole();
-                               pConsole.write(height);
+                               consolePrinter pConsole = new consolePrinter();
+                               pConsole.write(new Pyramid(height));
                                break printingLoop;
 
                            case "2":
 
-                               pyramidWriterFile pFile = new pyramidWriterFile();
-                               pFile.write(height);
+                               filePrinter pWriteFile = new filePrinter(fileString);
+                               pWriteFile.write(new Pyramid(height));
                                break printingLoop;
 
                            default:
