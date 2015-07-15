@@ -7,14 +7,12 @@ import java.io.*;
  * A class that runs a script which prints a right-aligned pyramid for Mario to jump over on the terminal or to a file.
  * 
  * @author Brian
- * @version 2.0
+ * @version 3.0
  */
 public class Mario
 {
     public static void main(String[] args) throws IOException
     {
-       //Tests
-       //testVerifyInput();
 
         System.out.println("\nWelcome to the Mario Program!  At any time, press 'q' to quit the program.\n");
 
@@ -95,25 +93,6 @@ public class Mario
             System.out.println("\nInvalid input.\n");
             return false;
         }
-    }
-    
-    static void testVerifyInput() {
-        //
-        String inputString1="0";
-        System.out.println("Test input=" + inputString1);
-        System.out.println("Expected output=false");
-        System.out.println("Actual output=" + verifyInput(inputString1));
-        //
-        String inputString2="24";
-        System.out.println("Test input=" + inputString2);
-        System.out.println("Expected output=false");
-        System.out.println("Actual output=" + verifyInput(inputString2));
-        //
-        String inputString3="8";
-        System.out.println("Test input=" + inputString3);
-        System.out.println("Expected output=true");
-        System.out.println("Actual output=" + verifyInput(inputString3));
-        
     }
     
 }
