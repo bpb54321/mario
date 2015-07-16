@@ -55,13 +55,13 @@ public class Mario
                            case "1":
 
                                consolePrinter pConsole = new consolePrinter();
-                               pConsole.write(PyramidFactory.buildPyramid(height));
+                               pConsole.write(PyramidFactory.getInstance().buildPyramid(height));
                                break printingLoop;
 
                            case "2":
 
                                filePrinter pWriteFile = new filePrinter(fileString);
-                               pWriteFile.write(PyramidFactory.buildPyramid(height));
+                               pWriteFile.write(PyramidFactory.getInstance().buildPyramid(height));
                                break printingLoop;
 
                            default:
